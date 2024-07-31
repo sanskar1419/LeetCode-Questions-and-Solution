@@ -1,5 +1,7 @@
 package LongestCommonPrefix;
 
+import java.util.Arrays;
+
 public class LongestCommonPrefix {
     public static String longestCommonPrefix(String[] strs) {
         if (strs.length == 0)
@@ -8,25 +10,20 @@ public class LongestCommonPrefix {
         if (strs.length == 1)
             return strs[0];
 
-        int minStringIndex = Integer.MAX_VALUE;
-        for (int i = 0; i < strs.length; i++) {
-            if (strs[i].length() < minStringIndex) {
-                minStringIndex = i;
-            }
-        }
+        Arrays.sort(strs);
 
         int i = 0;
-        while (i < strs[minStringIndex].length()) {
-            char ch = strs[minStringIndex].charAt(i);
+        while (i < strs[0].length()) {
+            char ch = strs[0].charAt(i);
             for (int j = 1; j < strs.length; j++) {
                 if (strs[j].charAt(i) != ch) {
-                    return strs[minStringIndex].substring(0, i);
+                    return strs[0].substring(0, i);
                 }
             }
             i++;
         }
 
-        return strs[minStringIndex];
+        return strs[0];
     }
 
     public static void main(String args[]) {
